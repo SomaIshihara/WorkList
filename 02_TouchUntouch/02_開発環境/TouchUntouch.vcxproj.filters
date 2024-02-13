@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="collision.cpp">
+      <Filter>Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Culc.cpp">
+      <Filter>Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="file.cpp">
+      <Filter>Base\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Base\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="motion.cpp">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>Base\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="object2D.cpp">
+      <Filter>Base\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="object3D.cpp">
+      <Filter>Base\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="objectBillboard.cpp">
+      <Filter>Base\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="objectX.cpp">
+      <Filter>Base\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="pause.cpp">
+      <Filter>Base\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking.cpp">
+      <Filter>Base\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="result.cpp">
+      <Filter>Base\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="meshField.cpp">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="meshsky.cpp">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>Base\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="xmodel.cpp">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="shadow.cpp">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="debugproc.cpp">
+      <Filter>Base\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Base\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="manager.cpp">
+      <Filter>Base\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="precompile.cpp">
+      <Filter>Base\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer.cpp">
+      <Filter>Base\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.cpp">
+      <Filter>Base\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Base\Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="button3D.cpp">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="bg.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="button2D.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="effect2D.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="effectBillboard.cpp">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="fade.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="number.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="score.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="particleBillboard.cpp">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="particle2D.cpp">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClCompile>
+    <ClCompile Include="block3D.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="switch.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="goal.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="userdef.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="objloader.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="switchmanager.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="tutorialobj.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+    <ClCompile Include="tutorial.cpp">
+      <Filter>Base\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="blockmanager.cpp">
+      <Filter>Added</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="collision.h">
+      <Filter>Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Culc.h">
+      <Filter>Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="file.h">
+      <Filter>Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Base\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="motion.h">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>Base\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object2D.h">
+      <Filter>Base\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object3D.h">
+      <Filter>Base\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="objectBillboard.h">
+      <Filter>Base\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="objectX.h">
+      <Filter>Base\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="pause.h">
+      <Filter>Base\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking.h">
+      <Filter>Base\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="result.h">
+      <Filter>Base\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="meshField.h">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="meshsky.h">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="shadow.h">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>Base\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Base\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="xmodel.h">
+      <Filter>Base\Core\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="debugproc.h">
+      <Filter>Base\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Base\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>Base\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="precompile.h">
+      <Filter>Base\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer.h">
+      <Filter>Base\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>Base\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Base\Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="button3D.h">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="bg.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="button2D.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="effect2D.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="effectBillboard.h">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="fade.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="number.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="score.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="particleBillboard.h">
+      <Filter>Base\Derivation\3D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="particle2D.h">
+      <Filter>Base\Derivation\2D_Using</Filter>
+    </ClInclude>
+    <ClInclude Include="block3D.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="character.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="switch.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="interface.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="goal.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="userdef.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="objloader.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="switchmanager.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="tutorialobj.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+    <ClInclude Include="tutorial.h">
+      <Filter>Base\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="blockmanager.h">
+      <Filter>Added</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{8f0cae85-35e2-439e-ba07-90e00d19f427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Object">
+      <UniqueIdentifier>{2c9dc879-4bcc-4bb3-afab-f1daa638de47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Derivation">
+      <UniqueIdentifier>{45235bf6-227b-4875-9e5b-5cc1d1193e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Derivation\3D_Using">
+      <UniqueIdentifier>{4aaa7b59-1100-45d6-bd6d-215cda10e4b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Derivation\2D_Using">
+      <UniqueIdentifier>{cdb158eb-aac3-45ef-ae0f-a716b53de493}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Core">
+      <UniqueIdentifier>{4d162efd-615d-45d9-9668-ece86c5a4752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Core\3D_Using">
+      <UniqueIdentifier>{42fe1b47-442a-4b14-8e8a-27e616e1c7f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Core\System">
+      <UniqueIdentifier>{5b9a1e1a-0f2f-431b-8d1b-f03f58e5df6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Scene">
+      <UniqueIdentifier>{45cd2a6b-5c0a-4e17-80b4-b61a34c6efbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Added">
+      <UniqueIdentifier>{187302fe-02d0-45ea-a04e-538cc5337f50}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

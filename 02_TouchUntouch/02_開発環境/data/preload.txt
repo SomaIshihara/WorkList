@@ -1,0 +1,214 @@
+#============================================================
+#
+# 初期読み込みテクスチャ
+# Author:石原颯馬
+#
+#============================================================
+SCRIPT_START
+
+#タイトル部
+START_LOAD		#00:タイトルロゴ
+	TEXTURE_NAME = data\\TEXTURE\\tex_Logo.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#01:スタート文字(KB)
+	TEXTURE_NAME = data\\TEXTURE\\tex_prs_start_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#02:スタート文字(GP)
+	TEXTURE_NAME = data\\TEXTURE\\tex_prs_start_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#UI
+START_LOAD		#03:数字
+	TEXTURE_NAME = data\\TEXTURE\\tex_number.png
+	PATTERN_WIDTH = 10
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#04:タイマー文字
+	TEXTURE_NAME = data\\TEXTURE\\tex_time.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#05:スコア文字
+	TEXTURE_NAME = data\\TEXTURE\\tex_score.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#リザルト
+START_LOAD		#06:ボーナス文字
+	TEXTURE_NAME = data\\TEXTURE\\tex_bonus.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#07:ランキング移動文字(KB)
+	TEXTURE_NAME = data\\TEXTURE\\tex_prs_rank_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#08:ランキング移動文字(GP)
+	TEXTURE_NAME = data\\TEXTURE\\tex_prs_rank_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#ランキング
+START_LOAD		#09:ランキング文字
+	TEXTURE_NAME = data\\TEXTURE\\tex_ranking.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#10:ランキング(1位)
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#11:ランキング(2位)
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#12:ランキング(3位)
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_03.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#13:ランキング(4位)
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_04.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#14:ランキング(5位)
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_05.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#15:タイトル移動文字(KB)
+	TEXTURE_NAME = data\\TEXTURE\\tex_prs_return_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#16:タイトル移動文字(GP)
+	TEXTURE_NAME = data\\TEXTURE\\tex_prs_return_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#チュートリアル
+START_LOAD		#17:チュートリアル01（スイッチ）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#18:チュートリアル02（キャラ）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#19:チュートリアル03（アイテム）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_03.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#20:チュートリアル04（ゴール）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_04.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#28:チュートリアル05（移動：KB）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_05_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#29:チュートリアル06（切替：KB）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_06_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#30:チュートリアル05（移動：GP）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_05_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#31:チュートリアル06（切替：GP）
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_popup_06_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#ポーズ
+START_LOAD		#21:ポーズ文字
+	TEXTURE_NAME = data\\TEXTURE\\tex_pause_00.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#22:ゲームに戻る
+	TEXTURE_NAME = data\\TEXTURE\\tex_pause_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#23:最初から
+	TEXTURE_NAME = data\\TEXTURE\\tex_pause_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#24:タイトルに戻る
+	TEXTURE_NAME = data\\TEXTURE\\tex_pause_03.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#25:スクショ
+	TEXTURE_NAME = data\\TEXTURE\\tex_screenshot.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#26:背景1
+	TEXTURE_NAME = data\\TEXTURE\\tex_bg_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#27:背景2
+	TEXTURE_NAME = data\\TEXTURE\\tex_bg_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#ゲーム用
+START_LOAD		#32:操作中ポイント
+	TEXTURE_NAME = data\\TEXTURE\\tex_point.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+SCRIPT_END

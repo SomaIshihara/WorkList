@@ -1,0 +1,238 @@
+#============================================================
+#
+# 初期読み込みテクスチャ
+# Author:石原颯馬
+#
+#============================================================
+SCRIPT_START
+
+#タイトル部
+START_LOAD		#00:タイトルロゴ
+	TEXTURE_NAME = data\\TEXTURE\\tex_titlelogo.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#01:ボタン押せテキスト
+	TEXTURE_NAME = data\\TEXTURE\\tex_push_any.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#チュートリアル部
+START_LOAD		#02:チュートリアルテキスト
+	TEXTURE_NAME = data\\TEXTURE\\unimplemented.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#03:チュートリアルスキップテキスト
+	TEXTURE_NAME = data\\TEXTURE\\unimplemented.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#ゲーム部
+START_LOAD		#04:タイマーの数字
+	TEXTURE_NAME = data\\TEXTURE\\tex_number_01.png
+	PATTERN_WIDTH = 10
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#05:タイマーの記号
+	TEXTURE_NAME = data\\TEXTURE\\tex_symbol_01.png
+	PATTERN_WIDTH = 2
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#06:遅刻まで
+	TEXTURE_NAME = data\\TEXTURE\\tex_latetime_before.png
+	PATTERN_WIDTH = 10
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#07:遅刻から
+	TEXTURE_NAME = data\\TEXTURE\\tex_latetime_after.png
+	PATTERN_WIDTH = 2
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#ポーズ部
+START_LOAD		#08:ポーズテキスト
+	TEXTURE_NAME = data\\TEXTURE\\tex_pause_txt.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#09:ポーズの続ける
+	TEXTURE_NAME = data\\TEXTURE\\tex_continue.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#010:ポーズのリスタート
+	TEXTURE_NAME = data\\TEXTURE\\tex_restart.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#11:ポーズの帰る
+	TEXTURE_NAME = data\\TEXTURE\\tex_gohome.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#12:ポーズのスクショ
+	TEXTURE_NAME = data\\TEXTURE\\tex_screenshot.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#リザルト部
+START_LOAD		#13:成功テキスト
+	TEXTURE_NAME = data\\TEXTURE\\tex_result.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#14:遅刻テキスト
+	TEXTURE_NAME = data\\TEXTURE\\tex_result_latetime.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#ランキング部
+START_LOAD		#15:ランキングテキスト
+	TEXTURE_NAME = data\\TEXTURE\\tex_ranking.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#16:1位
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#17:2位
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#18:3位
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_03.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#19:4位
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_04.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#20:5位
+	TEXTURE_NAME = data\\TEXTURE\\tex_rank_05.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#21:道路
+	TEXTURE_NAME = data\\TEXTURE\\tex_road.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#22:ゴール
+	TEXTURE_NAME = data\\TEXTURE\\tex_goal.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#23:操作方向KB
+	TEXTURE_NAME = data\\TEXTURE\\tex_config_KB.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#24:操作方向GP
+	TEXTURE_NAME = data\\TEXTURE\\tex_config_GP.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+#エフェクト部
+START_LOAD		#25:エフェクト:煙
+	TEXTURE_NAME = data\\TEXTURE\\explosion000.png
+	PATTERN_WIDTH = 8
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#26:エフェクト:ブースト炎
+	TEXTURE_NAME = data\\TEXTURE\\tex_fire_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#27:チュートリアル01_KB
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_01_KB.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#28:チュートリアル01_GP
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_01_GP.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#29:チュートリアル02_KB
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_02_KB.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#30:チュートリアル02_GP
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_02_GP.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#31:チュートリアル03_KB
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_03_KB.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#32:チュートリアル03_GP
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_03_GP.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#33:チュートリアル04
+	TEXTURE_NAME = data\\TEXTURE\\tex_tutorial_04.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#34:地面用草
+	TEXTURE_NAME = data\\TEXTURE\\field001.jpg
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#35:スピードメーターの枠
+	TEXTURE_NAME = data\\TEXTURE\\tex_speedmeter_01.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+START_LOAD		#36:スピードメーターの針
+	TEXTURE_NAME = data\\TEXTURE\\tex_speedmeter_02.png
+	PATTERN_WIDTH = 1
+	PATTERN_HEIGHT = 1
+END_LOAD
+
+SCRIPT_END

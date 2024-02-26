@@ -1,0 +1,100 @@
+#==============================================================================
+#
+# 道路メッシュスクリプトファイル [road_data.txt]
+# Author : SOMA ISHIHARA
+#
+#==============================================================================
+SCRIPT			# この行は絶対消さないこと！
+
+#ベクトル以外の情報
+POS = 6100 -379 -5840
+ROT = 0 -1.57 0
+LENGTH = 300
+
+#ベクトルの情報（適当に入れても正規化できれいになるものとする）
+SET_VECTOR
+#01
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+	VECTOR = 1.0 0.0 0.0
+
+END_SET_VECTOR
+
+END_SCRIPT		# この行は絶対消さないこと！

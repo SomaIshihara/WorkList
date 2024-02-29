@@ -25,7 +25,9 @@
     <ClCompile Include="code\Addition\meshroad\meshroad.cpp" />
     <ClCompile Include="code\Addition\object2dmap\object2DMap.cpp" />
     <ClCompile Include="code\Addition\player\player.cpp" />
+    <ClCompile Include="code\Addition\smoke\smoke.cpp" />
     <ClCompile Include="code\Addition\speedmeter\speedmeter.cpp" />
+    <ClCompile Include="code\Addition\starttext\starttext.cpp" />
     <ClCompile Include="code\Addition\tutorialobj\tutorialobj.cpp" />
     <ClCompile Include="code\ISMD_IO\objloader\objloader.cpp" />
     <ClCompile Include="code\IS_Bace\_Core\camera\camera.cpp" />
@@ -86,7 +88,9 @@
     <ClInclude Include="code\Addition\meshroad\meshroad.h" />
     <ClInclude Include="code\Addition\object2dmap\object2DMap.h" />
     <ClInclude Include="code\Addition\player\player.h" />
+    <ClInclude Include="code\Addition\smoke\smoke.h" />
     <ClInclude Include="code\Addition\speedmeter\speedmeter.h" />
+    <ClInclude Include="code\Addition\starttext\starttext.h" />
     <ClInclude Include="code\Addition\tutorialobj\tutorialobj.h" />
     <ClInclude Include="code\ISMD_IO\objloader\objloader.h" />
     <ClInclude Include="code\IS_Bace\_Core\camera\camera.h" />

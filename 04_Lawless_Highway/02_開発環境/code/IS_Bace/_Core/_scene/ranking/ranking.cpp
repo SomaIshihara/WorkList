@@ -17,6 +17,7 @@
 #include "../../../_Expansion/meshsky/meshsky.h"
 #include "../../file(legacy)/file.h"
 #include "../../camera/camera.h"
+#include "../../../../Addition/starttext/starttext.h"
 
 //静的メンバ変数
 const int CRanking::MAX_RANK = 5;
@@ -91,8 +92,9 @@ HRESULT CRanking::Init(void)
 	pCamera->SetLength(2000.0f);
 
 	//スタート文字
-	CObject2D* pStart = CObject2D::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.9f, 0.0f), IS_Utility::VEC3_ZERO, 756.0f, 99.0f, CObject::PRIORITY_05);
+	CStartText* pStart = CStartText::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.9f, 0.0f), IS_Utility::VEC3_ZERO, 756.0f, 99.0f);
 	pStart->BindTexture(CTexture::PRELOAD::PRELOAD_01_PUSHANYBUTTON);
+	pStart->SetLitParam(5, 5, 2);
 
 	CMeshSky::Create(D3DXVECTOR3(0.0f, 0.0f, 4000.0f), IS_Utility::VEC3_ZERO, 14000.0f, 12, 12);
 

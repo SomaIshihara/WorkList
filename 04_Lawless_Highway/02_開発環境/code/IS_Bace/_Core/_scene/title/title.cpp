@@ -17,6 +17,7 @@
 #include "../../../_Expansion/meshsky/meshsky.h"
 #include "../../../../Addition/meshroad/meshroad.h"
 #include "../../file(legacy)/file.h"
+#include "../../../../Addition/starttext/starttext.h"
 
 //静的メンバ変数
 
@@ -26,8 +27,6 @@
 CTitle::CTitle()
 {
 	m_pFade = nullptr;
-	m_pTitle = nullptr;
-	m_pStart = nullptr;
 }
 
 //=================================
@@ -62,12 +61,13 @@ HRESULT CTitle::Init(void)
 	pCamera->SetLength(4000.0f);
 
 	//タイトル
-	m_pTitle = CObject2D::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.3f, 0.0f), IS_Utility::VEC3_ZERO, 384.0f, 216.0f, CObject::PRIORITY_05);
-	m_pTitle->BindTexture(CTexture::PRELOAD::PRELOAD_00_TITLELOGO);
+	CObject2D* pTitle = CObject2D::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.25f, SCREEN_HEIGHT * 0.3f, 0.0f), IS_Utility::VEC3_ZERO, 384.0f, 216.0f, CObject::PRIORITY_05);
+	pTitle->BindTexture(CTexture::PRELOAD::PRELOAD_00_TITLELOGO);
 
 	//スタート文字
-	m_pStart = CObject2D::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.6f, 0.0f), IS_Utility::VEC3_ZERO, 756.0f, 99.0f,CObject::PRIORITY_05);
-	m_pStart->BindTexture(CTexture::PRELOAD::PRELOAD_01_PUSHANYBUTTON);
+	CStartText* pStart = CStartText::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.6f, 0.0f), IS_Utility::VEC3_ZERO, 756.0f, 99.0f);
+	pStart->BindTexture(CTexture::PRELOAD::PRELOAD_01_PUSHANYBUTTON);
+	pStart->SetLitParam(5, 5, 2);
 
 	//空
 	CMeshSky::Create(D3DXVECTOR3(0.0f, 0.0f, 4000.0f), IS_Utility::VEC3_ZERO, 14000.0f, 12, 12);

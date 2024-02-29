@@ -12,6 +12,7 @@
 #include "../../IS_Bace/_Expansion/timer/timer.h"
 
 //前方宣言
+class CObject2D;
 class CTutorialState;
 
 //チュートリアルテキストクラス
@@ -34,13 +35,18 @@ public:
 	//設定
 	void SetState(CTutorialState* pState) { m_pState = pState; }
 	void SetWaitingPirot(void) { m_pPlayer->SetState(CPlayer::STATE::STATE_SYSTEM_START); }
-	void GameStart(void) { m_pPlayer->SetState(CPlayer::STATE::STATE_GAME); m_pTimer->Start(); }
+	void GameStart(void);
 private:
 	static const D3DXVECTOR3 PILOT_CHECKPOINT;
-	static const D3DXVECTOR3 START_CHECKPOINT;
+	static const int FADEIN_TIME;
+	static const int DISP_TIME;
+	static const int FADEOUT_TIME;
+
 	CTutorialState* m_pState;
 	CPlayer* m_pPlayer;
 	CTimer* m_pTimer;
+	CObject2D* m_pStart;
+	int m_nStartDispCounter;
 };
 
 //チュートリアル内容状態

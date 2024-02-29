@@ -17,6 +17,7 @@
 #include "../../IS_Bace/_Core/file(legacy)/file.h"
 #include "../../IS_Bace/_Core/input/input.h"
 #include "../../IS_Bace/_Core/debugproc/debugproc.h"
+#include "../smoke/smoke.h"
 #include "../../IS_Bace/_Expansion/meshfield/meshField.h"
 #include "../meshroad/meshroad.h"
 #include "../../IS_Bace/_Core/collision/collision.h"
@@ -54,6 +55,10 @@ namespace
 	const float BOOST_FIRE_R = 0.3f;
 	const float BOOST_FIRE_G = 0.41f;
 	const float BOOST_FIRE_B = 1.0f;
+	const float HILL_JUDGE = 0.44f;		//坂道と判断するYのベクトル量（坂道の角度=26°としたときのYの距離を正規化）
+	const float SMOKE_ALPHA_MAX = 0.3f;
+	const float SMOKE_ALPHA_ADD = 0.006f;
+	const float SMOKE_ALPHA_DEC = -0.0012f;
 }
 
 //=================================
@@ -81,6 +86,9 @@ CPlayer::CPlayer(int nPriority) : CChara(nPriority)
 	m_pSpeedMeter = nullptr;
 	m_fBoostFireAlpha = 0.0f;
 	m_fSpeedLimit = 0.0f;
+	m_apDriftSmoke[0] = nullptr;
+	m_apDriftSmoke[1] = nullptr;
+	m_fSmokeAlpha = 0.0f;
 }
 
 //=================================
@@ -98,16 +106,36 @@ HRESULT CPlayer::Init(void)
 	CManager* pManager = CManager::GetInstance();
 	CSound* pSound = pManager->GetSound();
 
+	//親初期化
 	CChara::Init();
+
+	//前の位置を設定
 	m_posOld = GetPos();
+
+	//向き設定
 	D3DXVECTOR3 rot = GetRot();
 	rot.y += IS_Utility::FixRot(rot.y + D3DX_PI);
 	SetRot(rot);
 	m_fHandleRot = rot.y;
+
+	//カメラの距離設定
 	pManager->GetCamera()->SetLength(MAX_CAMERA_LEN);
+
+	//コントローラーいったんKBで設定
 	m_pController = new CImgController(new CControllerKB);
-	m_pBoostFire = CObject3D::Create(GetPos() + D3DXVECTOR3(0.0f,0.0f,-20.0f), IS_Utility::VEC3_ZERO, 2.0f, 20.0f,PRIORITY_04);
+
+	//ブースト時の炎のオブジェクト生成
+	m_pBoostFire = CObject3D::Create(IS_Utility::VEC3_ZERO, IS_Utility::VEC3_ZERO, 2.0f, 20.0f,PRIORITY_04);
 	m_pBoostFire->BindTexture(CTexture::PRELOAD_26_EFFECT_FIRE);
+	SetBoostFire(GetPos());
+
+	//ドリフト時の煙オブジェクト生成
+	m_apDriftSmoke[0] = CSmoke::Create(IS_Utility::VEC3_ZERO, 10.0f, 4);
+	m_apDriftSmoke[0]->BindTexture(CTexture::PRELOAD_25_EFFECT_SMOKE);
+	m_apDriftSmoke[1] = CSmoke::Create(IS_Utility::VEC3_ZERO, 10.0f, 4);
+	m_apDriftSmoke[1]->BindTexture(CTexture::PRELOAD_25_EFFECT_SMOKE);
+	SetSmokePos(GetPos());
+	SetSmokeAlpha(m_fSmokeAlpha);
 
 	//あらかじめ音鳴らす
 	pSound->Play(CSound::SOUND_LABEL_SE_RUN);
@@ -156,10 +184,10 @@ void CPlayer::Update(void)
 		//リスポーン判定
 		if (pos.y <= CHARA_RESPAWN_HEIGHT)
 		{
-			pos = D3DXVECTOR3(0.0f, 100.0f, 50.0f);
-			m_fHandleRot = 0.5f * D3DX_PI;
+			pos = D3DXVECTOR3(0.0f, 120.0f, -2300.0f);
+			m_fHandleRot = D3DX_PI;
 			m_fDriftRot = 0.0f;
-			m_fSpeed = 0.0f;
+			m_fSpeed = MAX_RPS * NO_NITRO_SPEED * 0.6f;
 			m_nCounterJumpTime = 0;
 		}
 	}
@@ -170,40 +198,7 @@ void CPlayer::Update(void)
 	}
 	else if (m_state == STATE::STATE_SYSTEM_START)
 	{//スタート前操縦
-		//ゲージ回復
-		m_pGauge->AddRate(BASE_ADD_NITRO);
-
-		//重力加速度による移動量変更
-		m_move = m_vecMove * WHEEL_RADIUS * D3DX_PI * m_fSpeed / MAX_FPS;
-		m_move.y -= (IS_Utility::ACCELERATION_GRAVITY * m_nCounterJumpTime / MAX_FPS) * WEIGHT;
-
-		//メッシュフィールドに乗っかる
-		float height = CMeshRoad::GetHeightAll(pos, pos + m_move);
-		if (height > -FLT_MAX)	//仮
-		{//メッシュフィールドの上にいる
-			m_nCounterJumpTime = 0;
-			pos.y = height;
-			m_move.y = 0.0f;
-
-			m_vecMove = CMeshRoad::GetPirotRotAll(pos, pos + m_move);
-			D3DXVec3Normalize(&m_vecMove, &m_vecMove);
-
-			float rotYDest = atan2f(-m_vecMove.x, -m_vecMove.z);
-			float rotYDiff = rotYDest - m_fHandleRot;
-			m_fHandleRot += rotYDiff * 0.3f;
-		}
-
-		//カメラ位置更新
-		CManager::GetInstance()->GetCamera()->SetRot(D3DXVECTOR3(-0.07f * D3DX_PI, -IS_Utility::FixRot(m_fHandleRot + D3DX_PI) + m_fDriftRot * 0.05f, 0.0f));
-
-		//状態リセット
-		m_bBoost = false;
-		m_bDrift = false;
-
-		if (CManager::GetInstance()->GetSound()->IsPlay(CSound::SOUND_LABEL_SE_DRIFT) == true)
-		{//ドリフトしておらずかつドリフト音を鳴らしている
-			CManager::GetInstance()->GetSound()->Stop(CSound::SOUND_LABEL_SE_DRIFT);
-		}
+		AutoControll(pos);
 	}
 	else if (m_state == STATE::STATE_SYSTEM_GOAL)
 	{//ゴール演出
@@ -230,27 +225,10 @@ void CPlayer::Update(void)
 	m_pMap->SetCameraPosV(pos + D3DXVECTOR3(1.0f, 1500.0f, 0.0f));
 
 	//ブースト時の炎の見た目設定
-	if (m_pBoostFire != nullptr)
-	{
-		if (m_pController->Nitro() == true)
-		{
-			m_fBoostFireAlpha = IS_Utility::Clamp(m_fBoostFireAlpha + BOOST_FIRE_ALPHA_PLUS,1.0f,0.0f);
-		}
-		else
-		{
-			m_fBoostFireAlpha = IS_Utility::Clamp(m_fBoostFireAlpha - BOOST_FIRE_ALPHA_MINUS, 1.0f, 0.0f);
-		}
-		m_pBoostFire->SetCol(D3DXCOLOR(BOOST_FIRE_R, BOOST_FIRE_G, BOOST_FIRE_B, m_fBoostFireAlpha));
+	SetBoostFire(pos);
 
-		//再配置
-		D3DXVECTOR3 rotatedSmokePos = IS_Utility::RotateVtx(
-			D3DXVECTOR3(m_fWidth * 0.5f, 0.0f, -m_fDepth * 2.0f - 10.0f),
-			D3DXVECTOR3(0.0f, IS_Utility::FixRot(m_fHandleRot + m_fDriftRot + D3DX_PI), 0.0f),
-			pos + m_move + D3DXVECTOR3(0.0f, 4.0f, 0.0f));
-
-		m_pBoostFire->SetPos(rotatedSmokePos);
-		m_pBoostFire->SetRot(D3DXVECTOR3(0.0f, IS_Utility::FixRot(m_fHandleRot + m_fDriftRot), 0.0f));
-	}
+	//ドリフト時の煙の見た目設定
+	SetSmokePos(pos);
 
 	//スピードメーターの設定
 	m_pSpeedMeter->SetGauge(m_fSpeed / MAX_RPS);
@@ -393,9 +371,11 @@ void CPlayer::Control(D3DXVECTOR3& pos)
 			m_fDriftRot = IS_Utility::FixRot(m_fDriftRot + addRot + ROTATE_SPEED * handleRot * DRIFT_HANDLING_POWER);
 			m_fSpeed -= ACCEL_COEF * 1.5f;
 			m_pGauge->AddRate(DRIFT_ADD_NITRO);
+			SetSmokeAlpha(SMOKE_ALPHA_ADD);
 		}
 		else
 		{
+			SetSmokeAlpha(SMOKE_ALPHA_DEC);
 			m_fHandleRot += addRot;
 		}
 	}
@@ -412,10 +392,16 @@ void CPlayer::Control(D3DXVECTOR3& pos)
 				m_fDriftRot = 0.0f;
 			}
 		}
+		SetSmokeAlpha(SMOKE_ALPHA_DEC);
 	}
 	else if (bBrake == true)
 	{//ドリフト中でもハンドル操作もしてない。けどブレーキ掛けてる
+		SetSmokeAlpha(SMOKE_ALPHA_DEC);
 		m_fSpeed = IS_Utility::Clamp(m_fSpeed - ACCEL_COEF * BRAKE_POW, m_fSpeedLimit, 0.0f);
+	}
+	else
+	{
+		SetSmokeAlpha(SMOKE_ALPHA_DEC);
 	}
 
 	//音制御
@@ -442,20 +428,135 @@ void CPlayer::Control(D3DXVECTOR3& pos)
 
 	//メッシュフィールドに乗っかる
 	float height = CMeshField::GetHeightAll(pos, pos + m_move);
-	if (height > -FLT_MAX)	//仮
+	if (height > -FLT_MAX)
 	{//メッシュフィールドの上にいる
-		if (pos.y + m_move.y <= height)
+		D3DXVECTOR3 posNew = pos + m_move;
+		if (posNew.y <= height)
 		{//着地した
-			m_nCounterJumpTime = 0;
-			pos.y = height;
-			m_move.y = 0.0f;
+			D3DXVECTOR3 vec;
+			posNew.y = height;
+			D3DXVec3Normalize(&vec, &(posNew - pos));
+			if (vec.y < HILL_JUDGE)
+			{
+				m_nCounterJumpTime = 0;
+				pos.y = height;
+				m_move.y = 0.0f;
 
-			m_vecMove = CMeshField::GetLandingRotAll(pos, pos + m_move, m_fHandleRot + m_fDriftRot);
-			m_vecMove.x *= -1.0f;
-			m_vecMove.z *= -1.0f;
+				m_vecMove = CMeshField::GetLandingRotAll(pos, pos + m_move, m_fHandleRot + m_fDriftRot);
+				m_vecMove.x *= -1.0f;
+				m_vecMove.z *= -1.0f;
+			}
 		}
 	}
 
 	//カメラ位置更新
-	CManager::GetInstance()->GetCamera()->SetRot(D3DXVECTOR3(-0.07f * D3DX_PI, -IS_Utility::FixRot(m_fHandleRot + D3DX_PI) + m_fDriftRot * 0.05f, 0.0f));
+	CManager::GetInstance()->GetCamera()->SetRot(D3DXVECTOR3(-0.055f * D3DX_PI, -IS_Utility::FixRot(m_fHandleRot + D3DX_PI) + m_fDriftRot * 0.05f, 0.0f));
+}
+
+//=================================
+//自動操縦
+//=================================
+void CPlayer::AutoControll(D3DXVECTOR3& pos)
+{
+	//ゲージ回復
+	m_pGauge->AddRate(BASE_ADD_NITRO);
+
+	if (m_fSpeed >= MAX_RPS * TUTORIAL_REST * NO_NITRO_SPEED)
+	{//最大速度の一定割合以上なら減速
+		m_fSpeed = IS_Utility::Clamp(m_fSpeed - ACCEL_COEF * BRAKE_POW, MAX_RPS * TUTORIAL_REST, 0.0f);
+	}
+
+	//重力加速度による移動量変更
+	m_move = m_vecMove * WHEEL_RADIUS * D3DX_PI * m_fSpeed / MAX_FPS;
+	m_move.y -= (IS_Utility::ACCELERATION_GRAVITY * m_nCounterJumpTime / MAX_FPS) * WEIGHT;
+
+	//メッシュフィールドに乗っかる
+	float height = CMeshRoad::GetHeightAll(pos, pos + m_move);
+	if (height > -FLT_MAX)	//仮
+	{//メッシュフィールドの上にいる
+		m_nCounterJumpTime = 0;
+		pos.y = height;
+		m_move.y = 0.0f;
+
+		m_vecMove = CMeshRoad::GetPirotRotAll(pos, pos + m_move);
+		D3DXVec3Normalize(&m_vecMove, &m_vecMove);
+
+		float rotYDest = atan2f(-m_vecMove.x, -m_vecMove.z);
+		float rotYDiff = rotYDest - m_fHandleRot;
+		m_fHandleRot += rotYDiff * 0.3f;
+	}
+
+	//カメラ位置更新
+	CManager::GetInstance()->GetCamera()->SetRot(D3DXVECTOR3(-0.055f * D3DX_PI, -IS_Utility::FixRot(m_fHandleRot + D3DX_PI) + m_fDriftRot * 0.05f, 0.0f));
+
+	//状態リセット
+	m_bBoost = false;
+	m_bDrift = false;
+
+	if (CManager::GetInstance()->GetSound()->IsPlay(CSound::SOUND_LABEL_SE_DRIFT) == true)
+	{//ドリフトしておらずかつドリフト音を鳴らしている
+		CManager::GetInstance()->GetSound()->Stop(CSound::SOUND_LABEL_SE_DRIFT);
+	}
+}
+
+//=================================
+//ブースト時の炎のオブジェクト設定
+//=================================
+void CPlayer::SetBoostFire(D3DXVECTOR3& pos)
+{
+	if (m_pBoostFire != nullptr)
+	{
+		if (m_pController->Nitro() == true)
+		{
+			m_fBoostFireAlpha = IS_Utility::Clamp(m_fBoostFireAlpha + BOOST_FIRE_ALPHA_PLUS, 1.0f, 0.0f);
+		}
+		else
+		{
+			m_fBoostFireAlpha = IS_Utility::Clamp(m_fBoostFireAlpha - BOOST_FIRE_ALPHA_MINUS, 1.0f, 0.0f);
+		}
+		m_pBoostFire->SetCol(D3DXCOLOR(BOOST_FIRE_R, BOOST_FIRE_G, BOOST_FIRE_B, m_fBoostFireAlpha));
+
+		//再配置
+		D3DXVECTOR3 rotatedFirePos = IS_Utility::RotateVtx(
+			D3DXVECTOR3(m_fWidth * 0.5f, 0.0f, -m_fDepth * 2.0f - 10.0f),
+			D3DXVECTOR3(0.0f, IS_Utility::FixRot(m_fHandleRot + m_fDriftRot + D3DX_PI), 0.0f),
+			pos + m_move + D3DXVECTOR3(0.0f, 4.0f, 0.0f));
+
+		m_pBoostFire->SetPos(rotatedFirePos);
+		m_pBoostFire->SetRot(D3DXVECTOR3(0.0f, IS_Utility::FixRot(m_fHandleRot + m_fDriftRot), 0.0f));
+	}
+}
+
+//=================================
+//ドリフト時の煙のオブジェクト位置設定
+//=================================
+void CPlayer::SetSmokePos(D3DXVECTOR3& pos)
+{
+	//位置設定
+	D3DXVECTOR3 rotatedSmokePos;
+
+	//0
+	rotatedSmokePos = IS_Utility::RotateVtx(
+		D3DXVECTOR3(-m_fWidth * 0.9f, 0.0f, -m_fDepth * 1.7f),
+		D3DXVECTOR3(0.0f, IS_Utility::FixRot(m_fHandleRot + m_fDriftRot + D3DX_PI), 0.0f),
+		GetPos() + D3DXVECTOR3(0.0f, 1.0f, 0.0f));
+	m_apDriftSmoke[0]->SetPos(rotatedSmokePos);
+
+	//1
+	rotatedSmokePos = IS_Utility::RotateVtx(
+		D3DXVECTOR3(m_fWidth * 0.9f, 0.0f, -m_fDepth * 1.7f),
+		D3DXVECTOR3(0.0f, IS_Utility::FixRot(m_fHandleRot + m_fDriftRot + D3DX_PI), 0.0f),
+		GetPos() + D3DXVECTOR3(0.0f, 1.0f, 0.0f));
+	m_apDriftSmoke[1]->SetPos(rotatedSmokePos);
+}
+
+//=================================
+//ドリフト時の煙のオブジェクト色設定
+//=================================
+void CPlayer::SetSmokeAlpha(float fAdd)
+{
+	m_fSmokeAlpha = IS_Utility::Clamp(m_fSmokeAlpha + fAdd, SMOKE_ALPHA_MAX, 0.0f);
+
+	m_apDriftSmoke[0]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fSmokeAlpha));
+	m_apDriftSmoke[1]->SetCol(D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fSmokeAlpha));
 }

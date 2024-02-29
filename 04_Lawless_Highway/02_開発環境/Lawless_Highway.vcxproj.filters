@@ -282,6 +282,8 @@
     <ClCompile Include="code\Addition\tutorialobj\tutorialobj.cpp" />
     <ClCompile Include="code\Addition\object2dmap\object2DMap.cpp" />
     <ClCompile Include="code\Addition\speedmeter\speedmeter.cpp" />
+    <ClCompile Include="code\Addition\smoke\smoke.cpp" />
+    <ClCompile Include="code\Addition\starttext\starttext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\main.h" />
@@ -422,5 +424,7 @@
     <ClInclude Include="code\Addition\tutorialobj\tutorialobj.h" />
     <ClInclude Include="code\Addition\object2dmap\object2DMap.h" />
     <ClInclude Include="code\Addition\speedmeter\speedmeter.h" />
+    <ClInclude Include="code\Addition\smoke\smoke.h" />
+    <ClInclude Include="code\Addition\starttext\starttext.h" />
   </ItemGroup>
 </Project>

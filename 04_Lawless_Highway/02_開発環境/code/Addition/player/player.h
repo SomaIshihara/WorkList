@@ -17,11 +17,11 @@
 //前方宣言
 class CBoxCollider;
 class CImgController;
-class CParticleBillboard;
 class CObject3D;
 class CGauge;
 class CObject2DMap;
 class CSpeedMeter;
+class CSmoke;
 
 //キャラクタークラス
 class CPlayer : public CChara, public ICollisionReader
@@ -68,6 +68,10 @@ public:
 
 private:
 	void Control(D3DXVECTOR3 &pos);
+	void AutoControll(D3DXVECTOR3& pos);
+	void SetBoostFire(D3DXVECTOR3& pos);
+	void SetSmokePos(D3DXVECTOR3& pos);
+	void SetSmokeAlpha(float fAdd);
 
 	CImgController* m_pController;
 	STATE m_state;
@@ -78,6 +82,7 @@ private:
 	float m_fSpeedLimit;			//最高速度
 	float m_fWidth, m_fHeight, m_fDepth;	//サイズ
 	CBoxCollider* m_pCollider;
+	CSmoke* m_apDriftSmoke[2];
 	CObject3D* m_pBoostFire;
 	CGauge* m_pGauge;
 	CObject2DMap* m_pMap;
@@ -89,6 +94,7 @@ private:
 	bool m_bDrift;
 	float m_fHandleRot;
 	float m_fDriftRot;
+	float m_fSmokeAlpha;
 };
 
 #endif // !_Player_H_

@@ -54,6 +54,7 @@ public:
 		PRELOAD_34_FIELD_LEAF,		//地面用草
 		PRELOAD_35_SPEEDMETER_01,	//スピードメーターの枠
 		PRELOAD_36_SPEEDMETER_02,	//スピードメーターの針
+		PRELOAD_37_START,			//ゲームスタート
 		PRELOAD_MAX
 	};
 

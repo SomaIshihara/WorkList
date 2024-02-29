@@ -31,6 +31,7 @@
 #include "../../../../Addition/tutorialobj/tutorialobj.h"
 #include "../../../../Addition/object2dmap/object2DMap.h"
 #include "../../../../Addition/speedmeter/speedmeter.h"
+#include "../../../../Addition/starttext/starttext.h"
 
 #include "../../../../ISMD_IO/objloader/objloader.h"
 
@@ -78,21 +79,21 @@ HRESULT CGame::Init(void)
 	CSpeedMeter* pSpeedMeter = CSpeedMeter::Create(D3DXVECTOR3(SCREEN_WIDTH - 116.0f, SCREEN_HEIGHT - 116.0f, 0.0f), 200.0f);
 
 	//プレイヤー配置
-	m_pPlayer = CPlayer::Create(D3DXVECTOR3(22485.0f, -378.0f, -1845.0f), m_pGauge, pMap, pSpeedMeter);
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(22485.0f, -378.0f + 50.0f, -1845.0f), m_pGauge, pMap, pSpeedMeter);
 	m_pPlayer->SetRot(D3DXVECTOR3(0.0f, -0.5f * D3DX_PI, 0.0f));
 	m_pPlayer->SetState(CPlayer::STATE::STATE_TUTORIAL);
 
 	//オブジェクト配置
+	//地面
+	CMeshField::Create(D3DXVECTOR3(0.0f, -380.2f, 6000.0f), IS_Utility::VEC3_ZERO, 2048.0f, 2048.0f, 24, 24)
+		->BindTexture(CTexture::PRELOAD_34_FIELD_LEAF);
+
 	//道路
 	LoadRoadScriptFile("data//road_data_main.txt")->BindTexture(CTexture::PRELOAD::PRELOAD_21_ROAD);
 	LoadRoadScriptFile("data//road_data_sub.txt")->BindTexture(CTexture::PRELOAD::PRELOAD_21_ROAD);
 	LoadRoadScriptFile("data//road_data_TGConnect.txt")->BindTexture(CTexture::PRELOAD::PRELOAD_21_ROAD);
 	LoadRoadScriptFile("data//road_data_dummy.txt")->BindTexture(CTexture::PRELOAD::PRELOAD_21_ROAD);
 	LoadRoadScriptFile("data//road_data_tutorial.txt")->BindTexture(CTexture::PRELOAD::PRELOAD_21_ROAD);
-
-	//地面
-	CMeshField::Create(D3DXVECTOR3(0.0f, -381.5f, 6000.0f), IS_Utility::VEC3_ZERO, 2048.0f, 2048.0f, 24, 24)
-		->BindTexture(CTexture::PRELOAD_34_FIELD_LEAF);
 
 	//UI
 	m_pTimer = CTimerMSmS::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, 32.0f, 0.0f), IS_Utility::VEC3_ZERO, 48.0f, 64.0f);
@@ -109,6 +110,8 @@ HRESULT CGame::Init(void)
 
 	//メッシュ空
 	CMeshSky::Create(D3DXVECTOR3(6000.0f,0.0f,4000.0f), IS_Utility::VEC3_ZERO, 18000.0f, 12, 12);
+
+	//ゴール
 	m_pGoal = CGoal::Create(D3DXVECTOR3(-1500.0f, 13.0f, 16500.0f), 600.0f, 600.0f, 100.0f);
 
 	//BGM鳴らす
@@ -184,8 +187,9 @@ void CGame::Update(void)
 				IS_Utility::VEC3_ZERO, 480.0f, 96.0f)->BindTexture(CTexture::PRELOAD::PRELOAD_13_RESULT_SUCCESS);
 
 			//スタート文字
-			CObject2D::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.9f, 0.0f), IS_Utility::VEC3_ZERO, 756.0f, 99.0f)
-				->BindTexture(CTexture::PRELOAD::PRELOAD_01_PUSHANYBUTTON);
+			CStartText* pStartText = CStartText::Create(D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.9f, 0.0f), IS_Utility::VEC3_ZERO, 756.0f, 99.0f);
+			pStartText->BindTexture(CTexture::PRELOAD::PRELOAD_01_PUSHANYBUTTON);
+			pStartText->SetLitParam(5, 5, 2);
 
 			//ブレーキ音だけ鳴らしほかの車効果音は消す
 			pSound->Stop(CSound::SOUND_LABEL_SE_RUN);
